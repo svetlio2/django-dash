@@ -7,7 +7,7 @@ from django.contrib.admin import helpers
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.contrib import messages
@@ -123,7 +123,7 @@ class DashboardEntryAdmin(CompatModelAdmin):
                     'workspace', 'user')
     list_filter = ('user', 'workspace', 'layout_uid', 'placeholder_uid', 'plugin_uid')
     list_editable = ('position',)
-    readonly_fields = ('plugin_uid_code',)    
+    readonly_fields = ('plugin_uid_code',)
     fieldsets = (
         (None, {
             'fields': ('plugin_uid', 'plugin_data', 'layout_uid', 'placeholder_uid', 'position', 'workspace')
@@ -221,11 +221,11 @@ class DashboardPluginAdmin(CompatModelAdmin):
             return redirect('admin:dash_dashboardplugin_changelist')
 
     def get_urls(self):
-        my_urls = patterns('',
+        my_urls = [
             # Bulk change dashboard plugins
             url(r'^bulk-change-dashboard-plugins/$', self.bulk_change_dashboard_plugins,
                 name='bulk_change_dashboard_plugins'),
-        )
+        ]
         return my_urls + super(DashboardPluginAdmin, self).get_urls()
 
 admin.site.register(DashboardPlugin, DashboardPluginAdmin)

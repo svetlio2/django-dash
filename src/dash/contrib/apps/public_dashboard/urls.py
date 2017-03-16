@@ -1,9 +1,11 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
-urlpatterns = patterns('dash.contrib.apps.public_dashboard.views',
+from dash.contrib.apps.public_dashboard import views
+
+urlpatterns = [
     # View public dashboard workspace.
-    url(r'^(?P<username>[\w_\-]+)/(?P<workspace>[\w_\-]+)/$', view='public_dashboard', name='dash.public_dashboard'),
+    url(r'^(?P<username>[\w_\-]+)/(?P<workspace>[\w_\-]+)/$', views.public_dashboard, name='dash.public_dashboard'),
 
     # View public dashboard (no workspace selected == default workspace used).
-    url(r'^(?P<username>[\w_\-]+)/$', view='public_dashboard', name='dash.public_dashboard'),
-)
+    url(r'^(?P<username>[\w_\-]+)/$', views.public_dashboard, name='dash.public_dashboard'),
+]
