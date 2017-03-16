@@ -38,3 +38,10 @@ heroku_setup.py
 /demos/heroku_demo/db.sqlite3
 /demos/heroku_demo/staticfiles/
 /src/dash/contrib/layouts/bootstrap3/
+
+.ropeproject
+.ropeproject/*
+
+*~
+*.swp
+*.swo
